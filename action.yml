@@ -1,0 +1,44 @@
+name: "Create Deployment Action"
+description: "Creates a GitHub Deployment"
+author: 'step-security'
+branding:
+  icon: arrow-up
+  color: black
+inputs:
+  transient_environment:
+    description: "Set this deployment as transient"
+    default: "false"
+    required: false
+  pr:
+    description: "Whether deployment is being created from a PR"
+    default: "false"
+    required: false
+  pr_id:
+    description: "If pr is set to true, pass the PR ID here"
+    required: false
+  initial_status:
+    description: "Initial status for the deployment"
+    default: "pending"
+    required: false
+  ref:
+    description: "The reference for the deployment"
+    required: false
+  token:
+    description: "Github repository token"
+    required: true
+  target_url:
+    description: "Target url location"
+    required: false
+  description:
+    description: "Descriptive message about the deployment"
+    required: false
+  environment:
+    description: "The name of the environment for the deployment"
+    default: "production"
+    required: false
+outputs:
+  deployment_id:
+    description: "The ID of the created deployment"
+runs:
+  using: "node24"
+  main: "dist/index.js"
